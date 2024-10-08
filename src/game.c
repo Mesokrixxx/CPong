@@ -4,6 +4,11 @@ int main(int argc, char *argv[])
 {
 	printf("Program Started\n");
 
+	// Window setup
+	GLFWwindow* window = setupWindow();
+	if (window == NULL)
+		return -1;
+
 	// Default Variables for tests
 	SceneManager* defaultSceneM = newSceneManager();
 	Scene* defaultScene = newScene();
@@ -18,11 +23,16 @@ int main(int argc, char *argv[])
 	
 	defaultSceneM->sceneIndex = 0;
 	Scene* actualScene = getCurrentScene(defaultSceneM);
-	for (int i = 0; i < 100; i++)
+	
+	while(!glfwWindowShouldClose(window))
 	{
 		updateSceneContent(actualScene);
 		renderSceneContent(actualScene);
+
+	    glfwSwapBuffers(window);
+	    glfwPollEvents();    
 	}
 
+	glfwTerminate();
 	return 0;
 }

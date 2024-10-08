@@ -3,5 +3,6 @@
 
 # include <stdio.h>
 # include "scene.h"
+# include "graphics.h"
 
 # endif
