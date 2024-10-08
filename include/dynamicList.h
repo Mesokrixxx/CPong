@@ -5,12 +5,10 @@ typedef struct DYNAMIC_LIST_STRUCT {
 	unsigned int size;
 	unsigned int itemSize;
 	void** items;
-} dynamicList;
+} DynamicList;
 
-dynamicList* initDynamicList(unsigned int itemSize);
-
-void appendItemDynamicList(dynamicList* dList, void* item);
-
-void freeDynamicList(dynamicList* dList);
+DynamicList* initDynamicList(unsigned int itemSize);
+void appendItemToDynamicList(DynamicList* dList, void* item);
+void freeDynamicList(DynamicList* dList);
 
 # endif
