@@ -3,7 +3,7 @@ EXEC = pong.out
 CC = gcc
 CFLAGS = -I${PONG_INCLUDES} -IGL/include -lglfw
 
-PONG_INCLUDES = include/
+PONG_INCLUDES = src/include/
 SRCS = ${wildcard ./src/*.c}
 SRCS += ${wildcard ./GL/src/*.c}
 OBJS = ${SRCS:.c=.o} 

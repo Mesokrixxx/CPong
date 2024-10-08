@@ -1,4 +1,4 @@
-# include "game.h"
+# include "include/game.h"
 
 int main(int argc, char *argv[])
 {
@@ -15,7 +15,6 @@ int main(int argc, char *argv[])
 	Content* defaultContent = initContent();
 
 	addContentToScene(defaultScene, defaultContent);
-
 	addSceneToSceneManager(defaultSceneM, defaultScene);
 
 	// Main loop

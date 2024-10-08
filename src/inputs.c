@@ -1,5 +1,5 @@
-# include "inputs.h"
-# include "boolean.h"
+# include "include/inputs.h"
+# include "include/utils.h"
 
 void processInput(GLFWwindow* window)
 {

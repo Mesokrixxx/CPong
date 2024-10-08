@@ -1,4 +1,4 @@
-# include "scene.h"
+# include "include/scene.h"
 # include <stdlib.h>
 
 Scene* newScene()

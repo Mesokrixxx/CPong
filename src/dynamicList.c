@@ -1,4 +1,4 @@
-# include "dynamicList.h"
+# include "include/dynamicList.h"
 # include <stdlib.h>
 
 DynamicList* initDynamicList(unsigned int itemSize)

@@ -1,4 +1,4 @@
-# include "graphics.h"
+# include "include/graphics.h"
 # include <stdio.h>
 
 GLFWwindow* setupWindow()
