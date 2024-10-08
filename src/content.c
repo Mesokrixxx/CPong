@@ -1,5 +1,6 @@
 # include "content.h"
 # include <stdlib.h>
+# include <stdio.h>
 
 Content* initContent()
 {
@@ -19,15 +20,18 @@ Content* contentConstructor(Content* self, void (*init)(void* vSelf), void (*upd
 
 void contentInit(void* vSelf) 
 {
-	Content* self = (Content*) vSelf;
+	// Content* self = (Content*) vSelf;
+	printf("Init Content!\n");
 }
 
 void contentUpdate(void* vSelf)
 {
-	Content* self = (Content*) vSelf;
+	// Content* self = (Content*) vSelf;
+	printf("Updating Content!\n");
 }
 
 void contentDraw(void* vSelf)
 {
-	Content* self = (Content*) vSelf;
+	// Content* self = (Content*) vSelf;
+	printf("Rendering Content!\n");
 }

@@ -1,9 +1,10 @@
 # ifndef PONG_SCENE_H
 # define PONG_SCENE_H
 # include "dynamicList.h"
+# include "content.h"
 
 typedef struct SCENE_STRUCT {
-	DynamicList* content;
+	DynamicList* contents;
 } Scene;
 
 Scene* newScene();
@@ -19,6 +20,7 @@ typedef struct SCENE_MANAGER_STRUCT {
 
 SceneManager* newSceneManager();
 void addSceneToSceneManager(SceneManager* sceneM, Scene* scene);
+void initScenesContent(SceneManager* sceneM);
 Scene* getCurrentScene(SceneManager* sceneM);
 
 # endif

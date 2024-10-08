@@ -1,6 +1,7 @@
 # ifndef GAME_H
 # define GAME_H
 
-// Stuff
+# include <stdio.h>
+# include "scene.h"
 
 # endif
