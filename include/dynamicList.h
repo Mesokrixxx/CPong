@@ -11,4 +11,6 @@ dynamicList* initDynamicList(unsigned int itemSize);
 
 void appendItemDynamicList(dynamicList* dList, void* item);
 
+void freeDynamicList(dynamicList* dList);
+
 # endif

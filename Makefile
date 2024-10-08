@@ -13,7 +13,7 @@ all: ${OBJS}
 clean:
 	rm -f ${OBJS}
 
-fclean: fclean
+fclean: clean
 	rm -f ${EXEC}
 
 re: fclean all

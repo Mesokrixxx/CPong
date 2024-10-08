@@ -1,6 +1,6 @@
 # ifndef GAME_H
 # define GAME_H
 
-// Stuff
+# include "dynamicList.h"
 
 # endif

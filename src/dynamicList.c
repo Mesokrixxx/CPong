@@ -17,3 +17,9 @@ void appendItemDynamicList(dynamicList* dList, void* item)
 	dList->items = realloc(dList->items, (dList->size + 1) * dList->itemSize);
 	dList->items[dList->size - 1] = item;
 }
+
+void freeDynamicList(dynamicList* dList)
+{
+	free(dList->items);
+	free(dList);
+}
