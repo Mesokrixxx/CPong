@@ -16,11 +16,13 @@ GLFWwindow* setupWindow()
 		glfwTerminate();
 		return NULL;
 	}
+	glfwMakeContextCurrent(window);
 
 	// Initialize GLAD
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
 	    printf("Failed to load GLAD\n");
+	    glfwTerminate();
 	    return NULL;
 	}  
 

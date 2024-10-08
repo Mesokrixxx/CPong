@@ -26,6 +26,12 @@ int main(int argc, char *argv[])
 	
 	while(!glfwWindowShouldClose(window))
 	{
+		processInput(window);
+
+		glClearColor(48.0f / 255.0f, 48.0f / 255.0f, 48.0f / 255.0f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		// Rendering Game
 		updateSceneContent(actualScene);
 		renderSceneContent(actualScene);
 

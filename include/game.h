@@ -4,5 +4,6 @@
 # include <stdio.h>
 # include "scene.h"
 # include "graphics.h"
+# include "inputs.h"
 
 # endif

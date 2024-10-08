@@ -1,14 +1,15 @@
 EXEC = pong.out
 
 CC = gcc
-CFLAGS = -I${INCLUDES} -IGL/include/ -lglfw
+CFLAGS = -I${PONG_INCLUDES} -IGL/include -lglfw
 
-INCLUDES = ./include/
+PONG_INCLUDES = include/
 SRCS = ${wildcard ./src/*.c}
+SRCS += ${wildcard ./GL/src/*.c}
 OBJS = ${SRCS:.c=.o} 
 
 all: ${OBJS}
-	${CC} ${CFLAGS} -o ${EXEC} ${OBJS}
+	${CC} ${OBJS} ${CFLAGS} -o ${EXEC}
 
 clean:
 	rm -f ${OBJS}
