@@ -12,9 +12,9 @@ int main(int argc, char *argv[])
 	// Default Variables for tests
 	SceneManager* defaultSceneM = newSceneManager();
 	Scene* defaultScene = newScene();
-	Content* defaultContent = initContent();
+	Entity* defaultEntity = initEntity(5.8f, 7.2f, 9.7f);
 
-	addContentToScene(defaultScene, defaultContent);
+	addContentToScene(defaultScene, defaultEntity);
 	addSceneToSceneManager(defaultSceneM, defaultScene);
 
 	// Main loop
@@ -22,7 +22,6 @@ int main(int argc, char *argv[])
 	
 	defaultSceneM->sceneIndex = 0;
 	Scene* actualScene = getCurrentScene(defaultSceneM);
-	
 	while(!glfwWindowShouldClose(window))
 	{
 		processInput(window);

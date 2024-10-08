@@ -8,7 +8,7 @@ typedef struct SCENE_STRUCT {
 } Scene;
 
 Scene* newScene();
-void addContentToScene(Scene* scene, Content* content);
+void addContentToScene(Scene* scene, void* content);
 void initSceneContent(Scene* scene);
 void updateSceneContent(Scene* scene);
 void renderSceneContent(Scene* scene);

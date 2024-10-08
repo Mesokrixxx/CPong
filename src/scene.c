@@ -10,9 +10,9 @@ Scene* newScene()
 	return scene;
 }
 
-void addContentToScene(Scene* scene, Content* content)
+void addContentToScene(Scene* scene, void* content)
 {
-	appendItemToDynamicList(scene->contents, content);
+	addItemToDynamicList(scene->contents, content);
 }
 
 void initSceneContent(Scene* scene)
@@ -60,7 +60,7 @@ SceneManager* newSceneManager()
 
 void addSceneToSceneManager(SceneManager* sceneM, Scene* scene)
 {
-	appendItemToDynamicList(sceneM->scenes, scene);
+	addItemToDynamicList(sceneM->scenes, scene);
 }
 
 void initScenesContent(SceneManager* sceneM)

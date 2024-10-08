@@ -18,20 +18,8 @@ Content* contentConstructor(Content* self, void (*init)(void* vSelf), void (*upd
 	return self;
 }
 
-void contentInit(void* vSelf) 
-{
-	// Content* self = (Content*) vSelf;
-	printf("Init Content!\n");
-}
+void contentInit(void* vSelf) {}
 
-void contentUpdate(void* vSelf)
-{
-	// Content* self = (Content*) vSelf;
-	printf("Updating Content!\n");
-}
+void contentUpdate(void* vSelf) {}
 
-void contentDraw(void* vSelf)
-{
-	// Content* self = (Content*) vSelf;
-	printf("Rendering Content!\n");
-}
+void contentDraw(void* vSelf) {}

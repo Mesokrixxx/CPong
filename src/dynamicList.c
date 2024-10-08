@@ -11,7 +11,7 @@ DynamicList* initDynamicList(unsigned int itemSize)
 	return dList;
 }
 
-void appendItemToDynamicList(DynamicList* dList, void* item)
+void addItemToDynamicList(DynamicList* dList, void* item)
 {
 	dList->size++;
 	dList->items = realloc(dList->items, (dList->size + 1) * dList->itemSize);

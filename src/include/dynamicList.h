@@ -8,7 +8,7 @@ typedef struct DYNAMIC_LIST_STRUCT {
 } DynamicList;
 
 DynamicList* initDynamicList(unsigned int itemSize);
-void appendItemToDynamicList(DynamicList* dList, void* item);
+void addItemToDynamicList(DynamicList* dList, void* item);
 void freeDynamicList(DynamicList* dList);
 
 # endif
