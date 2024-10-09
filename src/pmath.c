@@ -1,5 +1,4 @@
 # include "include/pmath.h"
-# include <math.h>
 
 // BASE //
 float pSquaredf(float x)
@@ -10,6 +9,16 @@ float pSquaredf(float x)
 int pSquared(int x)
 {
 	return x * x;
+}
+
+float radToDeg(float rad)
+{
+	return ((rad * 180) / PI);
+}
+
+float degToRad(float deg)
+{
+	return ((deg * PI) / 180);
 }
 
 // VECTORS //
@@ -78,7 +87,7 @@ float getRadAngleOfVec2s(Vec2 vecA, Vec2 vecB)
 
 float getDegAngleOfVec2s(Vec2 vecA, Vec2 vecB)
 {
-	return ((getRadAngleOfVec2s(vecA, vecB) * 180) / M_PI);
+	return (radToDeg(getRadAngleOfVec2s(vecA, vecB)));
 }
 
 // Vectors 3 - float
@@ -156,7 +165,7 @@ float getRadAngleOfVec3s(Vec3 vecA, Vec3 vecB)
 
 float getDegAngleOfVec3s(Vec3 vecA, Vec3 vecB)
 {
-	return ((getRadAngleOfVec2s(vecA, vecB) * 180) / M_PI);
+	return (radToDeg(getRadAngleOfVec3s(vecA, vecB)));
 }
 
 float crossVec3s(Vec3 vecA, Vec3 vecB, Vec3 dest)
@@ -244,7 +253,7 @@ float getRadAngleOfVec4s(Vec4 vecA, Vec4 vecB)
 
 float getDegAngleOfVec4s(Vec4 vecA, Vec4 vecB)
 {
-	return ((getRadAngleOfVec2s(vecA, vecB) * 180) / M_PI);
+	return (radToDeg(getRadAngleOfVec4s(vecA, vecB)));
 }
 
 // MATRICES //

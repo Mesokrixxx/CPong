@@ -1,9 +1,14 @@
 # ifndef PONG_MATH_H
 # define PONG_MATH_H
+# include <math.h>
 
-// Base //
+# define PI M_PI
+
+// BASE //
 float pSquaredf(float x);
 int pSquared(int x);
+float radToDef(float rad);
+float degToRad(float deg);
 
 // VECTORS //
 typedef float Vec2[2];
