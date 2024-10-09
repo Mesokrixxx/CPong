@@ -53,9 +53,5 @@ float getRadAngleOfVec4s(Vec4 vecA, Vec4 vecB);
 float getDegAngleOfVec4s(Vec4 vecA, Vec4 vecB);
 
 // MATRICES //
-typedef float Mat4[4][4];
-
-// Matrices 4 - float
-
 
 # endif
