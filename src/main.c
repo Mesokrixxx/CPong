@@ -1,9 +1,13 @@
 # include "include/main.h"
 
+// Global variables (Do not change) 
 SceneManager* MAIN_SCENE_M;
 ShaderManager* MAIN_SHADER_M;
-
 char* SHADER_PATH = "src/res/shaders/";
+
+// Parameters
+int DEBUG = TRUE;
+int DEBUG_VIEW = TRUE;
 
 int main(int argc, char *argv[])
 {
@@ -29,6 +33,8 @@ int main(int argc, char *argv[])
 	
 	MAIN_SCENE_M->sceneIndex = 0;
 	Scene* actualScene = getCurrentScene(MAIN_SCENE_M);
+
+	viewMode();
 	while(!glfwWindowShouldClose(window))
 	{
 		processInput(window);

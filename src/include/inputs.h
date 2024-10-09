@@ -3,5 +3,6 @@
 # include "graphics.h"
 
 void processInput(GLFWwindow* window);
+void viewMode();
 
 # endif

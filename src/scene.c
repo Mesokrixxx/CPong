@@ -20,6 +20,8 @@ void addContentToScene(Scene* scene, void* content)
 
 void initSceneContent(Scene* scene)
 {
+	glBindVertexArray(scene->VAO);
+
 	for (unsigned int i = 0; i < scene->contents->size; i++)
 	{
 		Content* c = (Content*) scene->contents->items[i];
@@ -27,6 +29,8 @@ void initSceneContent(Scene* scene)
 		if (c->update)
 			c->init(c);
 	}
+
+	glBindVertexArray(0);
 }
 
 void updateSceneContent(Scene* scene)
@@ -51,6 +55,8 @@ void renderSceneContent(Scene* scene)
 		if (c->update)
 			c->draw(c);
 	}
+
+	glBindVertexArray(0);
 }
 
 SceneManager* newSceneManager()
