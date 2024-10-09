@@ -13,7 +13,7 @@ int pSquared(int x)
 }
 
 // VECTORS //
-// Vectors 2
+// Vectors 2 - float
 float initVec2(Vec2 vec, float x, float y)
 {
 	vec[0] = x;
@@ -81,7 +81,7 @@ float getDegAngleOfVec2s(Vec2 vecA, Vec2 vecB)
 	return ((getRadAngleOfVec2s(vecA, vecB) * 180) / M_PI);
 }
 
-// Vectors 3
+// Vectors 3 - float
 float initVec3(Vec3 vec, float x, float y, float z)
 {
 	vec[0] = x;
@@ -164,7 +164,7 @@ float crossVec3s(Vec3 vecA, Vec3 vecB, Vec3 dest)
 	return (initVec3(dest, ((vecA[1] * vecB[2]) - (vecA[2] * vecB[1])), ((vecA[2] * vecB[0]) - (vecA[0] * vecB[2])), ((vecA[0] * vecB[1]) - (vecA[1] * vecB[0]))));
 }
 
-// Vectors 4
+// Vectors 4 - float
 float initVec4(Vec4 vec, float x, float y, float z, float w)
 {
 	vec[0] = x;
@@ -246,3 +246,5 @@ float getDegAngleOfVec4s(Vec4 vecA, Vec4 vecB)
 {
 	return ((getRadAngleOfVec2s(vecA, vecB) * 180) / M_PI);
 }
+
+// MATRICES //
