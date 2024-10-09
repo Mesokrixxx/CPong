@@ -1,7 +1,7 @@
 EXEC = pong.out
 
 CC = gcc
-CFLAGS = -I${PONG_INCLUDES} -IGL/include -lglfw
+CFLAGS = -I${PONG_INCLUDES} -IGL/include -lglfw -lm
 
 PONG_INCLUDES = src/include/
 SRCS = ${wildcard ./src/*.c}
