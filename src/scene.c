@@ -1,4 +1,5 @@
 # include "include/scene.h"
+# include "include/graphics.h"
 # include <stdlib.h>
 
 Scene* newScene()
@@ -6,6 +7,8 @@ Scene* newScene()
 	Scene* scene = calloc(1, sizeof(struct SCENE_STRUCT));
 
 	scene->contents = initDynamicList(sizeof(struct CONTENT_STRUCT));
+
+	glGenVertexArrays(1, &scene->VAO);
 
 	return scene;
 }
@@ -39,6 +42,8 @@ void updateSceneContent(Scene* scene)
 
 void renderSceneContent(Scene* scene)
 {
+	glBindVertexArray(scene->VAO);
+
 	for (unsigned int i = 0; i < scene->contents->size; i++)
 	{
 		Content* c = (Content*) scene->contents->items[i];

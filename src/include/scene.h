@@ -5,6 +5,7 @@
 
 typedef struct SCENE_STRUCT {
 	DynamicList* contents;
+	unsigned int VAO;
 } Scene;
 
 Scene* newScene();

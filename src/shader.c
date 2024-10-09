@@ -4,7 +4,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-char* SHADER_PATH = "src/res/shaders/";
+extern char* SHADER_PATH;
 
 Shader* newShader(char* name, char* fragmentShaderFileName, char* vertexShaderFileName)
 {
@@ -99,16 +99,16 @@ void addShaderToShaderManager(ShaderManager* shaderM, Shader* shader)
 	addItemToDynamicList(shaderM->shaders, shader);
 }
 
-Shader* getShader(ShaderManager* shaderM, char* name)
+unsigned int getShaderProgram(ShaderManager* shaderM, char* name)
 {
 	for (int i = 0; i < shaderM->shaders->size; i++)
 	{
 		Shader* shader = (Shader*) shaderM->shaders->items[i];
 
 		if (strCmp(shader->name, name) == 0)
-			return shader;
+			return shader->program;
 	}
 
 	printf("Not able to find the shader called %s\n", name);
-	return NULL;
+	return -1;
 }

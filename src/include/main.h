@@ -8,5 +8,6 @@
 # include "inputs.h"
 # include "utils.h"
 # include "entity.h"
+# include "shader.h"
 
 # endif

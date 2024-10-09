@@ -15,6 +15,6 @@ typedef struct SHADER_MANAGER_STRUCT {
 
 ShaderManager* newShaderManager();
 void addShaderToShaderManager(ShaderManager* shaderM, Shader* shader);
-Shader* getShader(ShaderManager* shaderM, char* name);
+unsigned int getShaderProgram(ShaderManager* shaderM, char* name);
 
 # endif 
