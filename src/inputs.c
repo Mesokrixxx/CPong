@@ -16,8 +16,9 @@ void processInput(GLFWwindow* window)
 		if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS && !isDebugKeyPressed)
 		{
 			DEBUG_VIEW = !DEBUG_VIEW;
-			viewMode();
 			isDebugKeyPressed = 1;
+			
+			viewMode();
 		}
 
 		if (glfwGetKey(window, GLFW_KEY_G) == GLFW_RELEASE)

@@ -1,5 +1,6 @@
 # include "include/scene.h"
 # include "include/graphics.h"
+# include "include/content.h"
 # include <stdlib.h>
 
 Scene* newScene()

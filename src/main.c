@@ -1,4 +1,5 @@
 # include "include/main.h"
+# include <stdio.h>
 
 // Global variables (Do not change) 
 SceneManager* MAIN_SCENE_M;

@@ -1,8 +1,8 @@
 # ifndef PONG_SCENE_H
 # define PONG_SCENE_H
 # include "dynamicList.h"
-# include "content.h"
 
+// Scene
 typedef struct SCENE_STRUCT {
 	DynamicList* contents;
 	unsigned int VAO;
@@ -14,6 +14,7 @@ void initSceneContent(Scene* scene);
 void updateSceneContent(Scene* scene);
 void renderSceneContent(Scene* scene);
 
+// Scene Manager
 typedef struct SCENE_MANAGER_STRUCT {
 	unsigned int sceneIndex;
 	DynamicList* scenes;

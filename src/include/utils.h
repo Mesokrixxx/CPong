@@ -4,7 +4,7 @@
 # define TRUE 1
 # define FALSE 0
 
-// Specialish
+// Special-ish
 char* readFile(char* path);
 
 // Base

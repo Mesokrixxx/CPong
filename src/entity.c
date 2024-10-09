@@ -1,7 +1,8 @@
 # include "include/entity.h"
-# include "include/shader.h"
 # include "include/utils.h"
 # include "include/scene.h"
+# include "include/shader.h"
+# include "include/graphics.h"
 # include <stdlib.h>
 # include <stdio.h>
 

@@ -19,7 +19,5 @@ Content* contentConstructor(Content* self, void (*init)(void* vSelf), void (*upd
 }
 
 void contentInit(void* vSelf) {}
-
 void contentUpdate(void* vSelf) {}
-
 void contentDraw(void* vSelf) {}

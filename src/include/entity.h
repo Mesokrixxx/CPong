@@ -1,8 +1,6 @@
 # ifndef PONG_ENTITY_H
 # define PONG_ENTITY_H
 # include "content.h"
-# include "graphics.h"
-# include "shader.h"
 
 typedef struct ENTITY_STRUCT {
 	Content base;
