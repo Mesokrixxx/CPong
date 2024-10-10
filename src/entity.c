@@ -38,10 +38,10 @@ void entityInit(void* vSelf)
 	glGenBuffers(1, &self->EBO);
 
 	float vertices[] = {
-	    -0.5f, -0.5f, 0.0f,
-	     0.5f, -0.5f, 0.0f,
-	     0.5f,  0.5f, 0.0f,
-	     -0.5f, 0.5f, 0.0f
+	    -0.5f, -0.5f, 0.0f, // bottom left
+	     0.5f, -0.5f, 0.0f, // bottom right
+	     0.5f,  0.5f, 0.0f, // top right
+	     -0.5f, 0.5f, 0.0f	// top left
 	};
 
 	unsigned int indices[] = {
@@ -69,7 +69,7 @@ void entityDraw(void* vSelf)
 
 	Mat4 mat = mat4(1.0f);
 	mat = scaleMat4(mat, vec3(0.5f, 0.5f, 0.5f));
-	mat = rotateMat4(mat, (float) glfwGetTime(), vec3(1.0f, 1.0f, 1.0f));
+	mat = rotateMat4(mat, (float) glfwGetTime(), vec3(0.0f, 0.0f, 1.0f));
 
     unsigned int transformLoc = glGetUniformLocation(getShaderProgram(MAIN_SHADER_M, "defaultTransform"), "transform");
     glUniformMatrix4fv(transformLoc, 1, GL_FALSE, (const GLfloat*) mat.m); 
