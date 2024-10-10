@@ -172,11 +172,13 @@ Mat4 mat4(float x)
 
 Mat4 translateMat4(Mat4 mat, Vec3 vec)
 {
-	mat.m[0][3] = vec.x;
-	mat.m[1][3] = vec.y;
-	mat.m[2][3] = vec.z;
+	Mat4 out = mat4(1.0f);
 
-	return mat;
+	out.m[0][3] = vec.x;
+	out.m[1][3] = vec.y;
+	out.m[2][3] = vec.z;
+
+	return mulMat4s(mat, out);
 }
 
 Mat4 scaleMat4(Mat4 mat, Vec3 vec)
