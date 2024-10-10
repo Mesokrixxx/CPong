@@ -1,8 +1,7 @@
 # ifndef PONG_MATH_H
 # define PONG_MATH_H
-# include <math.h>
 
-# define PI M_PI
+# define PI 3.14159265359
 
 // BASE //
 float pSquaredf(float x);

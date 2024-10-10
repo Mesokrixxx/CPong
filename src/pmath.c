@@ -1,4 +1,5 @@
 # include "include/pmath.h"
+# include <math.h>
 
 // BASE //
 float pSquaredf(float x)
