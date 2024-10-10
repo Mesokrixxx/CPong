@@ -5,7 +5,7 @@
 
 // BASE //
 float pSquaredf(float x);
-int pSquared(int x);
+double pSquared(double x);
 float radToDeg(float rad);
 float degToRad(float deg);
 

@@ -8,7 +8,7 @@ char* SHADER_PATH = "src/res/shaders/";
 
 // Parameters
 int DEBUG = TRUE;
-int DEBUG_VIEW = TRUE;
+int DEBUG_VIEW = FALSE;
 
 int main(int argc, char *argv[])
 {
@@ -26,8 +26,10 @@ int main(int argc, char *argv[])
 	addContentToScene(defaultScene, defaultEntity);
 	addSceneToSceneManager(MAIN_SCENE_M, defaultScene);
 
-	Shader* defaultShader = newShader("default", "fragmentDefault.glsl", "vertexDefault.glsl");
+	Shader* defaultShader = newShader("default", "fragmentDefault.fs.glsl", "vertexDefault.vs.glsl");
+	Shader* defaultShaderTransform = newShader("defaultTransform", "fragmentDefault.fs.glsl", "vertexDefaultTransform.vs.glsl");
 	addShaderToShaderManager(MAIN_SHADER_M, defaultShader);
+	addShaderToShaderManager(MAIN_SHADER_M, defaultShaderTransform);
 
 	// Main loop
 	initScenesContent(MAIN_SCENE_M);

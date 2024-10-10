@@ -3,6 +3,7 @@
 # include "include/scene.h"
 # include "include/shader.h"
 # include "include/graphics.h"
+# include "include/pmath.h"
 # include <stdlib.h>
 # include <stdio.h>
 
@@ -64,6 +65,14 @@ void entityUpdate(void* vSelf) {}
 
 void entityDraw(void* vSelf)
 {
-	glUseProgram(getShaderProgram(MAIN_SHADER_M, "default"));
+	Mat4 mat = mat4(1.0f);
+	mat = rotateMat4(mat, (float)glfwGetTime(), vec3(0.0f, 1.0f, 0.0f));
+	// mat = scaleMat4(mat, vec3(0.5f, 0.5f, 0.5f));
+
+	glUseProgram(getShaderProgram(MAIN_SHADER_M, "defaultTransform"));
+
+	unsigned int transformLoc = glGetUniformLocation(getShaderProgram(MAIN_SHADER_M, "defaultTransform"), "transform");
+    glUniformMatrix4fv(transformLoc, 1, GL_FALSE, (const GLfloat*) mat.m); 
+
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }

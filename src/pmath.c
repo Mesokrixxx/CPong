@@ -7,7 +7,7 @@ float pSquaredf(float x)
 	return x * x;
 }
 
-int pSquared(int x)
+double pSquared(double x)
 { 
 	return x * x;
 }
@@ -190,7 +190,29 @@ Mat4 scaleMat4(Mat4 mat, Vec3 vec)
 
 Mat4 rotateMat4(Mat4 mat, float angle, Vec3 axis)
 {
-	return mat4Zero();
+	Mat4 out;
+
+	out.m[0][0] = cosf(angle) + pSquaredf(axis.x) * (1 - cosf(angle));
+	out.m[0][1] = axis.x * axis.y * (1 - cosf(angle)) - axis.z * sinf(angle);
+	out.m[0][2] = axis.x * axis.z * (1 - cosf(angle)) - axis.y * sinf(angle);
+	out.m[0][3] = mat.m[0][3];
+
+	out.m[1][0] = axis.y * axis.x * (1 - cosf(angle)) + axis.z * sinf(angle);
+	out.m[1][1] = cosf(angle) + pSquaredf(axis.y) * (1 - cosf(angle));
+	out.m[1][2] = axis.y * axis.z * (1 - cosf(angle)) - axis.x * sinf(angle);
+	out.m[1][3] = mat.m[1][3];
+
+	out.m[2][0] = axis.x * axis.z * (1 - cosf(angle)) - axis.y * sinf(angle);
+	out.m[2][1] = axis.y * axis.z * (1 - cosf(angle)) + axis.x * sinf(angle);
+	out.m[2][2] = cosf(angle) + pSquaredf(axis.z) * (1 - cosf(angle));
+	out.m[2][3] = mat.m[2][3];
+
+	out.m[3][0] = mat.m[3][0];
+	out.m[3][1] = mat.m[3][1];
+	out.m[3][2] = mat.m[3][2];
+	out.m[3][3] = mat.m[3][3];
+
+	return out;
 }
 
 // Mix of Vectors and Matrices
