@@ -181,11 +181,13 @@ Mat4 translateMat4(Mat4 mat, Vec3 vec)
 
 Mat4 scaleMat4(Mat4 mat, Vec3 vec)
 {
-	mat.m[0][0] = vec.x;
-	mat.m[1][1] = vec.y;
-	mat.m[2][2] = vec.z;
+	Mat4 out;
 
-	return mat;
+	out.m[0][0] *= vec.x;
+	out.m[1][1] *= vec.y;
+	out.m[2][2] *= vec.z;
+
+	return out;
 }
 
 Mat4 rotateMat4(Mat4 mat, float angle, Vec3 axis)
