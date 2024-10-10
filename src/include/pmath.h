@@ -54,5 +54,18 @@ Vec4 normalizeVec4(Vec4 vec);
 float lenVec4(Vec4 vec);
 
 // MATRICES //
+// Mat4
+typedef struct {
+	float m[4][4];
+} Mat4;
+
+Mat4 mat4Zero();
+Mat4 mat4(float x);
+Mat4 translateMat4(Mat4 mat, Vec3 vec);
+Mat4 scaleMat4(Mat4 mat, Vec3 vec);
+Mat4 rotateMat4(Mat4 mat, float angle, Vec3 axis);
+
+// Mix of Vectors and Matrices
+Vec4 mulMat4Vec4(Mat4 mat, Vec4 vec);
 
 # endif

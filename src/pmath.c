@@ -152,4 +152,55 @@ float lenVec4(Vec4 vec)
 }
 
 // MATRICES //
+// Mat4
+Mat4 mat4Zero()
+{
+	Mat4 mat = {0};
+	return mat;
+}
 
+Mat4 mat4(float x)
+{
+	Mat4 mat = mat4Zero();
+
+	for (int i = 0; i < 4; i++)
+		mat.m[i][i] = x;
+
+	return mat;
+}
+
+Mat4 translateMat4(Mat4 mat, Vec3 vec)
+{
+	mat.m[0][3] = vec.x;
+	mat.m[1][3] = vec.y;
+	mat.m[2][3] = vec.z;
+
+	return mat;
+}
+
+Mat4 scaleMat4(Mat4 mat, Vec3 vec)
+{
+	mat.m[0][0] = vec.x;
+	mat.m[1][1] = vec.y;
+	mat.m[2][2] = vec.z;
+
+	return mat;
+}
+
+Mat4 rotateMat4(Mat4 mat, float angle, Vec3 axis)
+{
+	return mat4Zero();
+}
+
+// Mix of Vectors and Matrices
+Vec4 mulMat4Vec4(Mat4 mat, Vec4 vec)
+{
+	Vec4 out;
+
+	out.x = mat.m[0][0] * vec.x + mat.m[0][1] * vec.y + mat.m[0][2] * vec.z + mat.m[0][3] * vec.w;
+	out.y = mat.m[1][0] * vec.x + mat.m[1][1] * vec.y + mat.m[1][2] * vec.z + mat.m[1][3] * vec.w;
+	out.z = mat.m[2][0] * vec.x + mat.m[2][1] * vec.y + mat.m[2][2] * vec.z + mat.m[2][3] * vec.w;
+	out.w = mat.m[3][0] * vec.x + mat.m[3][1] * vec.y + mat.m[3][2] * vec.z + mat.m[3][3] * vec.w;
+
+	return out;
+}
