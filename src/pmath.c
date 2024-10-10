@@ -181,38 +181,47 @@ Mat4 translateMat4(Mat4 mat, Vec3 vec)
 
 Mat4 scaleMat4(Mat4 mat, Vec3 vec)
 {
-	Mat4 out;
+	Mat4 out = mat4(1.0f);
 
-	out.m[0][0] *= vec.x;
-	out.m[1][1] *= vec.y;
-	out.m[2][2] *= vec.z;
+	out.m[0][0] = vec.x;
+	out.m[1][1] = vec.y;
+	out.m[2][2] = vec.z;
 
-	return out;
+	return mulMat4s(mat, out);
 }
 
 Mat4 rotateMat4(Mat4 mat, float angle, Vec3 axis)
 {
+	Mat4 rotationMat4 = mat4Zero();
+
+	rotationMat4.m[0][0] = cosf(angle) + pSquaredf(axis.x) * (1 - cosf(angle));
+	rotationMat4.m[0][1] = axis.x * axis.y * (1 - cosf(angle)) - axis.z * sinf(angle);
+	rotationMat4.m[0][2] = axis.x * axis.z * (1 - cosf(angle)) + axis.y * sinf(angle);
+
+	rotationMat4.m[1][0] = axis.y * axis.x * (1 - cosf(angle)) + axis.z * sinf(angle);
+	rotationMat4.m[1][1] = cosf(angle) + pSquaredf(axis.y) * (1 - cosf(angle));
+	rotationMat4.m[1][2] = axis.y * axis.z * (1 - cosf(angle)) - axis.x * sinf(angle);
+
+	rotationMat4.m[2][0] = axis.z * axis.x * (1 - cosf(angle)) - axis.y * sinf(angle);
+	rotationMat4.m[2][1] = axis.z * axis.y * (1 - cosf(angle)) + axis.x * sinf(angle);
+	rotationMat4.m[2][2] = cosf(angle) + pSquaredf(axis.z) * (1 - cosf(angle));
+
+	rotationMat4.m[3][3] = 1;
+
+	return mulMat4s(mat, rotationMat4);
+}
+
+Mat4 mulMat4s(Mat4 matA, Mat4 matB)
+{
 	Mat4 out;
 
-	out.m[0][0] = cosf(angle) + pSquaredf(axis.x) * (1 - cosf(angle));
-	out.m[0][1] = axis.x * axis.y * (1 - cosf(angle)) - axis.z * sinf(angle);
-	out.m[0][2] = axis.x * axis.z * (1 - cosf(angle)) - axis.y * sinf(angle);
-	out.m[0][3] = mat.m[0][3];
-
-	out.m[1][0] = axis.y * axis.x * (1 - cosf(angle)) + axis.z * sinf(angle);
-	out.m[1][1] = cosf(angle) + pSquaredf(axis.y) * (1 - cosf(angle));
-	out.m[1][2] = axis.y * axis.z * (1 - cosf(angle)) - axis.x * sinf(angle);
-	out.m[1][3] = mat.m[1][3];
-
-	out.m[2][0] = axis.x * axis.z * (1 - cosf(angle)) - axis.y * sinf(angle);
-	out.m[2][1] = axis.y * axis.z * (1 - cosf(angle)) + axis.x * sinf(angle);
-	out.m[2][2] = cosf(angle) + pSquaredf(axis.z) * (1 - cosf(angle));
-	out.m[2][3] = mat.m[2][3];
-
-	out.m[3][0] = mat.m[3][0];
-	out.m[3][1] = mat.m[3][1];
-	out.m[3][2] = mat.m[3][2];
-	out.m[3][3] = mat.m[3][3];
+	for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            out.m[i][j] = 0;
+            for (int k = 0; k < 4; k++)
+                out.m[i][j] += matA.m[i][k] * matB.m[k][j];
+        }
+    }
 
 	return out;
 }

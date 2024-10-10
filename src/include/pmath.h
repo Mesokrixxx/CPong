@@ -63,6 +63,7 @@ Mat4 mat4(float x);
 Mat4 translateMat4(Mat4 mat, Vec3 vec);
 Mat4 scaleMat4(Mat4 mat, Vec3 vec);
 Mat4 rotateMat4(Mat4 mat, float angle, Vec3 axis);
+Mat4 mulMat4s(Mat4 matA, Mat4 matB);
 
 // Mix of Vectors and Matrices
 Vec4 mulMat4Vec4(Mat4 mat, Vec4 vec);
