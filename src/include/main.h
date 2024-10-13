@@ -22,6 +22,10 @@ typedef enum { false = 0, true = 1 } Bool;
 typedef struct Vec2_s { f32 x, y; } Vec2;
 typedef struct Vec2i_s { i32 x, y; } Vec2i;
 
+// Math
+# define min(a, b) ({ __typeof__(a) _a = (a), _b = (b); (__typeof__(a)) (_a < _b ? _a : _b); })
+# define max(a, b) ({ __typeof__(a) _a = (a), _b = (b); (__typeof__(a)) (_a > _b ? _a : _b); })
+
 // Debug
 # define ASSERT(_c, ...) if (!(_c)) { fprintf(stderr, __VA_ARGS__); exit(1); }
 

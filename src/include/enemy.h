@@ -2,6 +2,17 @@
 # define PONG_ENEMY_H
 # include "main.h"
 
+typedef struct enemy_s {
+	// Utils
+	u32 enemyW, enemyH;
+	f32 acceleration, friction; 
+	Vec2 pos, vel;
+	// Graphics
+	u32 color;
+	// AI
+	u32 strenght;
+} enemy_t;
+
 void enemyInit();
 void enemyUpdate();
 void enemyDraw(u32 pixels[]);

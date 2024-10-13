@@ -1,37 +1,42 @@
 #include "include/enemy.h"
 
-struct {
-	// Utils
-	u32 enemyW, enemyH;
-	f32 acceleration, friction; 
-	Vec2 pos, vel;
-	// Graphics
-	u32 color;
-	// AI
-	u32 strenght;
-} enemy;
+enemy_t* enemy;
+
+static void resolveCollision() {
+	if (enemy->pos.y + enemy->enemyH > MapHeight) {
+		enemy->pos.y = MapHeight - enemy->enemyH;
+		enemy->vel.y *= -1;
+	}
+
+	if (enemy->pos.y < 0) {
+		enemy->pos.y = 0;
+		enemy->vel.y *= -1;
+	}
+}
 
 void enemyInit() {
-	enemy.enemyW = 8;
-	enemy.enemyH = 32;
+	enemy = calloc(1, sizeof(struct enemy_s));
 
-	enemy.acceleration = 1.0f;
-	enemy.friction = 0.3f;
+	enemy->enemyW = 8;
+	enemy->enemyH = 32;
 
-	enemy.pos = (Vec2) {MapWidth - 3 - enemy.enemyW, 1.0f};
-	enemy.vel = (Vec2) {0.0f, 0.0f};
+	enemy->acceleration = 1.0f;
+	enemy->friction = 0.3f;
 
-	enemy.color = 0xFFFFFFFF;
+	enemy->pos = (Vec2) {MapWidth - 3 - enemy->enemyW, 1.0f};
+	enemy->vel = (Vec2) {0.0f, 0.0f};
 
-	enemy.strenght = 0;
+	enemy->color = 0xFFFFFFFF;
+
+	enemy->strenght = 0;
 }
 
 void enemyUpdate() {
-
+	resolveCollision();
 }
 
 void enemyDraw(u32 pixels[]) {
-	for (int x = enemy.pos.x; x < (int) (enemy.pos.x + enemy.enemyW); x++)
-		for (int y = enemy.pos.y; y < (int) (enemy.pos.y + enemy.enemyH); y++)
-			pixels[(y * MapWidth) + x] = enemy.color;
+	for (int x = enemy->pos.x; x < (int) (enemy->pos.x + enemy->enemyW); x++)
+		for (int y = enemy->pos.y; y < (int) (enemy->pos.y + enemy->enemyH); y++)
+			pixels[(y * MapWidth) + x] = enemy->color;
 }
