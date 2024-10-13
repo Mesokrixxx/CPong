@@ -28,7 +28,7 @@ static void resolveCollision() {
 	Vec2 ppos = player->pos;
 	Vec2 psize = (Vec2) {player->playerW, player->playerH};
 
-	if ((bpos.x - radius <= ppos.x + psize.x && bpos.x - radius >= ppos.x) && (ppos.y <= bpos.y + radius && bpos.y - radius <= ppos.y + psize.y)) {
+	if ((bpos.x - radius <= ppos.x + psize.x) && (ppos.y <= bpos.y + radius && bpos.y - radius <= ppos.y + psize.y)) {
 		ball->dir.x *= -1;
 		ball->vel.x *= -1;
 	}
@@ -48,7 +48,7 @@ void ballInit() {
 
 	ball->speed = 1.0f;
 	ball->radius = 8.0f / 2.0f;
-	ball->friction = 0.6f;
+	ball->friction = 0.2f;
 
 	ball->pos = (Vec2) {MapWidth / 2, MapHeight / 2};
 	ball->dir = (Vec2) {-1.0f, 1.0f};
