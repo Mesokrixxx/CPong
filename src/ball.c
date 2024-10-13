@@ -68,10 +68,20 @@ void ballUpdate() {
 	ball->pos.y += ball->vel.y;
 
 	resolveCollision();
+
+	f32 radius = ball->radius;
+	ASSERT(
+		!(ball->pos.x - radius / 4 < 0
+			|| ball->pos.x + radius / 4 > MapWidth
+			|| ball->pos.y + radius / 4 > MapHeight
+			|| ball->pos.y - radius / 4 < 0),
+		"Ball out of bounds\n");
 }
 
 void ballDraw(u32 pixels[]) {
-	for (int x = ball->pos.x - ball->radius; x < (int) (ball->pos.x + ball->radius); x++)
-		for (int y = ball->pos.y - ball->radius; y < (int) (ball->pos.y + ball->radius); y++)
+	f32 radius = ball->radius;
+
+	for (int x = ball->pos.x - radius; x < (int) (ball->pos.x + radius); x++)
+		for (int y = ball->pos.y - radius; y < (int) (ball->pos.y + radius); y++)
 			pixels[(y * MapWidth) + x] = ball->color;
 }

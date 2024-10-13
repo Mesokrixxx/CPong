@@ -42,6 +42,11 @@ void playerUpdate() {
 	player->pos.y += player->vel.y;
 
 	resolveCollision();
+
+	ASSERT(
+		!(player->pos.y + player->playerH / 2 < 0
+			|| player->pos.y - player->playerH / 2 > MapHeight),
+		"Player out of bounds\n");
 }
 
 void playerDraw(u32 pixels[]) {

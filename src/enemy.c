@@ -47,6 +47,11 @@ void enemyUpdate() {
 	enemy->pos.y += enemy->vel.y;
 
 	resolveCollision();
+
+	ASSERT(
+		!(enemy->pos.y + enemy->enemyH / 2 < 0
+			|| enemy->pos.y - enemy->enemyH / 2 > MapHeight),
+		"Enemy out of bounds\n");
 }
 
 void enemyDraw(u32 pixels[]) {
