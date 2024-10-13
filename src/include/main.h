@@ -15,13 +15,17 @@ typedef int16_t  i16;
 typedef int32_t  i32;
 typedef int64_t  i64;
 
+// Boolean
 typedef enum { false = 0, true = 1 } Bool;
 
+// Vector2
 typedef struct Vec2_s { f32 x, y; } Vec2;
 typedef struct Vec2i_s { i32 x, y; } Vec2i;
 
+// Debug
 # define ASSERT(_c, ...) if (!(_c)) { fprintf(stderr, __VA_ARGS__); exit(1); }
 
+// Variables
 # define WindowWidth 1280
 # define WindowHeight 720
 

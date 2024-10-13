@@ -1,6 +1,7 @@
 # include "include/main.h"
 # include "include/player.h"
 # include "include/enemy.h"
+# include "include/ball.h"
 
 struct MAIN_S {
 	SDL_Window* window;
@@ -12,18 +13,21 @@ struct MAIN_S {
 } state;
 
 static void init() {
-	playerInit();
+	ballInit();
 	enemyInit();
+	playerInit();
 }
 
 static void update() {
-	playerUpdate();
+	ballUpdate();
 	enemyUpdate();
+	playerUpdate();
 }
 
 static void render() {
-	playerDraw(state.pixels);
+	ballDraw(state.pixels);
 	enemyDraw(state.pixels);
+	playerDraw(state.pixels);
 }
 
 int main(int argc, char *argv[]) {
