@@ -1,7 +1,7 @@
 # ifndef PONG_MAIN_H
 # define PONG_MAIN_H
 # include <stdint.h> 
-#include <stdio.h>
+# include <stdio.h>
 # include <SDL2/SDL.h>
 
 typedef float    f32;

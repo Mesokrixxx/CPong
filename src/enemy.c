@@ -1,6 +1,9 @@
-#include "include/enemy.h"
+# include "include/enemy.h"
+# include "include/ball.h"
 
 enemy_t* enemy;
+
+extern ball_t* ball;
 
 static void resolveCollision() {
 	if (enemy->pos.y + enemy->enemyH > MapHeight) {
@@ -32,6 +35,17 @@ void enemyInit() {
 }
 
 void enemyUpdate() {
+	Vec2 bpos = ball->pos;
+
+	if (bpos.y > enemy->pos.y + enemy->enemyH / 2)
+		enemy->vel.y += enemy->acceleration;
+	if (bpos.y < enemy->pos.y + enemy->enemyH / 2)
+		enemy->vel.y -= enemy->acceleration;
+
+	enemy->vel.y *= (1.0f - enemy->friction);
+
+	enemy->pos.y += enemy->vel.y;
+
 	resolveCollision();
 }
 

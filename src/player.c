@@ -21,7 +21,7 @@ void playerInit() {
 	player->playerH = 32;
 
 	player->acceleration = 2.0f;
-	player->friction = 0.3f;
+	player->friction = 0.5f;
 
 	player->pos = (Vec2) {3.0f, 1.0f};
 	player->vel = (Vec2) {0.0f, 0.0f};
