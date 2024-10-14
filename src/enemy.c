@@ -6,12 +6,14 @@ enemy_t* enemy;
 extern ball_t* ball;
 
 static void resolveCollision() {
-	if (enemy->pos.y + enemy->enemyH > MapHeight) {
-		enemy->pos.y = MapHeight - enemy->enemyH;
+	Vec2 pos = enemy->pos, size = enemy->size;
+
+	if (pos.y + size.y > MapHeight) {
+		enemy->pos.y = MapHeight - size.y;
 		enemy->vel.y *= -1;
 	}
 
-	if (enemy->pos.y < 0) {
+	if (pos.y < 0) {
 		enemy->pos.y = 0;
 		enemy->vel.y *= -1;
 	}
@@ -20,13 +22,11 @@ static void resolveCollision() {
 void enemyInit() {
 	enemy = calloc(1, sizeof(struct enemy_s));
 
-	enemy->enemyW = 8;
-	enemy->enemyH = 32;
-
 	enemy->acceleration = 1.0f;
 	enemy->friction = 0.3f;
 
-	enemy->pos = (Vec2) {MapWidth - 3 - enemy->enemyW, 1.0f};
+	enemy->size = (Vec2) {8.0f, 32.0f};
+	enemy->pos = (Vec2) {MapWidth - 3 - enemy->size.x, 1.0f};
 	enemy->vel = (Vec2) {0.0f, 0.0f};
 
 	enemy->color = WHITE;
@@ -36,10 +36,11 @@ void enemyInit() {
 
 void enemyUpdate() {
 	Vec2 bpos = ball->pos;
+	Vec2 size = enemy->size, pos = enemy->pos;
 
-	if (bpos.y > enemy->pos.y + enemy->enemyH / 2)
+	if (bpos.y > pos.y + size.y / 2)
 		enemy->vel.y += enemy->acceleration;
-	if (bpos.y < enemy->pos.y + enemy->enemyH / 2)
+	if (bpos.y < pos.y + size.y / 2)
 		enemy->vel.y -= enemy->acceleration;
 
 	enemy->vel.y *= (1.0f - enemy->friction);
@@ -48,14 +49,17 @@ void enemyUpdate() {
 
 	resolveCollision();
 
+	// If collision did not work properlly
 	ASSERT(
-		!(enemy->pos.y + enemy->enemyH / 2 < 0
-			|| enemy->pos.y - enemy->enemyH / 2 > MapHeight),
+		!(enemy->pos.y + size.y / 2 < 0
+			|| enemy->pos.y - size.y / 2 > MapHeight),
 		"Enemy out of bounds\n");
 }
 
 void enemyDraw(u32 pixels[]) {
-	for (int x = enemy->pos.x; x < (int) (enemy->pos.x + enemy->enemyW); x++)
-		for (int y = enemy->pos.y; y < (int) (enemy->pos.y + enemy->enemyH); y++)
+	Vec2 pos = enemy->pos, size = enemy->size;
+
+	for (int x = pos.x; x < (int) (pos.x + size.x); x++)
+		for (int y = pos.y; y < (int) (pos.y + size.y); y++)
 			pixels[(y * MapWidth) + x] = enemy->color;
 }

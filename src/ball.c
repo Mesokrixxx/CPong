@@ -7,66 +7,58 @@ ball_t* ball;
 extern enemy_t* enemy;
 extern player_t* player;
 
-static int frontCollision(Vec2 bpos, f32 radius) {
+static void rectCollision(Vec2 pos, Vec2 size, Vec2 rectPos, Vec2 rectSize) {
+
+}
+
+static void resolveCollision() {
+	Vec2 bpos = ball->pos, bsize = ball->size;
+
+	// Window edge collision
+	if (bpos.y + bsize.y > MapHeight) {
+		ball->pos.y = MapHeight - bsize.y;
+		ball->vel.y *= -1;
+		ball->dir.y *= -1;
+	}
+
+	if (bpos.y < 0) {
+		ball->pos.y = 0;
+		ball->vel.y *= -1;
+		ball->dir.y *= -1;
+	}
+
 	// Player front Collision
 	Vec2 ppos = player->pos;
-	Vec2 psize = (Vec2) {player->playerW, player->playerH};
+	Vec2 psize = player->size;
 
-	if ((bpos.x - radius <= ppos.x + psize.x) && (ppos.y <= bpos.y + radius && bpos.y - radius <= ppos.y + psize.y)) {
+	if ((bpos.x <= ppos.x + psize.x) && (ppos.y <= bpos.y + bsize.y && bpos.y <= ppos.y + psize.y)) {
 		ball->dir.x *= -1;
 		ball->vel.x *= -1;
-		return 1;
+
+		if (bpos.x < ppos.x + psize.x)
+			ball->pos.x += ppos.x + psize.x - bpos.x;
 	}
 
 	// Enemy front collision
 	Vec2 epos = enemy->pos;
-	Vec2 esize = (Vec2) {enemy->enemyW, enemy->enemyH};
+	Vec2 esize = enemy->size;
 
-	if ((bpos.x + radius >= epos.x) && (epos.y <= bpos.y + radius && bpos.y - radius <= epos.y + esize.y)) {
+	if ((bpos.x + bsize.x >= epos.x) && (epos.y <= bpos.y + bsize.y && bpos.y <= epos.y + esize.y)) {
 		ball->dir.x *= -1;
 		ball->vel.x *= -1;
-		return 1;
+
+		if (bpos.x > epos.x + epos.x)
+			ball->pos.x -= epos.x + epos.x - bpos.x;
 	}
-
-	return 0;
-}
-
-static int topCollision(Vec2 bpos, f32 radius) {
-	// Player top collision
-
-	// Enemy top collision
-
-	return 0;
-}
-
-static void resolveCollision() {
-	Vec2 bpos = ball->pos;
-	f32 radius = ball->radius;
-
-	// Window edge collision
-	if (bpos.y + radius > MapHeight) {
-		ball->pos.y = MapHeight - radius;
-		ball->vel.y *= -1;
-		ball->dir.y *= -1;
-	}
-
-	if (bpos.y - radius < 0) {
-		ball->pos.y = radius;
-		ball->vel.y *= -1;
-		ball->dir.y *= -1;
-	}
-
-	if (!topCollision(bpos, radius)) 
-		frontCollision(bpos, radius);
 }
 
 void ballInit() {
 	ball = calloc(1, sizeof(struct ball_s));
 
 	ball->speed = 1.0f;
-	ball->radius = 8.0f / 2.0f;
 	ball->friction = 0.2f;
 
+	ball->size = (Vec2) {8.0f, 8.0f};
 	ball->pos = (Vec2) {MapWidth / 2, MapHeight / 2};
 	ball->dir = (Vec2) {-1.0f, 1.0f};
 	ball->vel = (Vec2) {0.0f, 0.0f};
@@ -86,19 +78,20 @@ void ballUpdate() {
 
 	resolveCollision();
 
-	f32 radius = ball->radius;
+	// If collision did not work properlly
+	Vec2 size = ball->size;
 	ASSERT(
-		!(ball->pos.x - radius / 4 < 0
-			|| ball->pos.x + radius / 4 > MapWidth
-			|| ball->pos.y + radius / 4 > MapHeight
-			|| ball->pos.y - radius / 4 < 0),
+		!(ball->pos.x < 0
+			|| ball->pos.x > MapWidth
+			|| ball->pos.y > MapHeight
+			|| ball->pos.y < 0),
 		"Ball out of bounds\n");
 }
 
 void ballDraw(u32 pixels[]) {
-	f32 radius = ball->radius;
+	Vec2 size = ball->size, pos = ball->pos;
 
-	for (int x = ball->pos.x - radius; x < (int) (ball->pos.x + radius); x++)
-		for (int y = ball->pos.y - radius; y < (int) (ball->pos.y + radius); y++)
+	for (int x = pos.x; x < (int) (pos.x + size.x); x++)
+		for (int y = pos.y; y < (int) (pos.y + size.y); y++)
 			pixels[(y * MapWidth) + x] = ball->color;
 }

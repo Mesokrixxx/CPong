@@ -3,12 +3,14 @@
 player_t* player;
 
 static void resolveCollision() {
-	if (player->pos.y + player->playerH > MapHeight) {
-		player->pos.y = MapHeight - player->playerH;
+	Vec2 size = player->size, pos = player->pos;
+
+	if (pos.y + size.y > MapHeight) {
+		player->pos.y = MapHeight - size.y;
 		player->vel.y *= -1;
 	}
 
-	if (player->pos.y < 0) {
+	if (pos.y < 0) {
 		player->pos.y = 0;
 		player->vel.y *= -1;
 	}
@@ -17,12 +19,10 @@ static void resolveCollision() {
 void playerInit() {
 	player = calloc(1, sizeof(struct player_s));
 
-	player->playerW = 8;
-	player->playerH = 32;
-
 	player->acceleration = 2.0f;
 	player->friction = 0.3f;
 
+	player->size = (Vec2) {8.0f, 32.0f};
 	player->pos = (Vec2) {3.0f, 1.0f};
 	player->vel = (Vec2) {0.0f, 0.0f};
 
@@ -43,14 +43,18 @@ void playerUpdate() {
 
 	resolveCollision();
 
+	// If collision did not work properlly
+	Vec2 size = player->size;
 	ASSERT(
-		!(player->pos.y + player->playerH / 2 < 0
-			|| player->pos.y - player->playerH / 2 > MapHeight),
+		!(player->pos.y + size.y / 2 < 0
+			|| player->pos.y - size.y / 2 > MapHeight),
 		"Player out of bounds\n");
 }
 
 void playerDraw(u32 pixels[]) {
-	for (int x = player->pos.x; x < (int) (player->pos.x + player->playerW); ++x)
-		for (int y = player->pos.y; y < (int) (player->pos.y + player->playerH); ++y) 
+	Vec2 size = player->size, pos = player->pos;
+
+	for (int x = pos.x; x < (int) (pos.x + size.x); ++x)
+		for (int y = pos.y; y < (int) (pos.y + size.y); ++y) 
 			pixels[(y * MapWidth) + x] = player->color;
 }

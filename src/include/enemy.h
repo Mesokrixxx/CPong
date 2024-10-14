@@ -4,9 +4,8 @@
 
 typedef struct enemy_s {
 	// Utils
-	u32 enemyW, enemyH;
 	f32 acceleration, friction; 
-	Vec2 pos, vel;
+	Vec2 size, pos, vel;
 	// Graphics
 	u32 color;
 	// AI

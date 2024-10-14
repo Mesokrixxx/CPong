@@ -4,8 +4,8 @@
 
 typedef struct ball_s {
 	// Utils
-	f32 speed, radius, friction;
-	Vec2 pos, dir, vel;
+	f32 speed, friction;
+	Vec2 size, pos, dir, vel;
 	// Graphics
 	u32 color;
 } ball_t;

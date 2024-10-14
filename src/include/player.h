@@ -4,9 +4,8 @@
 
 typedef struct player_s{
 	// Utils
-	u32 playerW, playerH;
 	f32 acceleration, friction; 
-	Vec2 pos, vel;
+	Vec2 size, pos, vel;
 	// Graphics
 	u32 color;
 } player_t;
