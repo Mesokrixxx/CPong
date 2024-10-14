@@ -7,6 +7,38 @@ ball_t* ball;
 extern enemy_t* enemy;
 extern player_t* player;
 
+static int frontCollision(Vec2 bpos, f32 radius) {
+	// Player front Collision
+	Vec2 ppos = player->pos;
+	Vec2 psize = (Vec2) {player->playerW, player->playerH};
+
+	if ((bpos.x - radius <= ppos.x + psize.x) && (ppos.y <= bpos.y + radius && bpos.y - radius <= ppos.y + psize.y)) {
+		ball->dir.x *= -1;
+		ball->vel.x *= -1;
+		return 1;
+	}
+
+	// Enemy front collision
+	Vec2 epos = enemy->pos;
+	Vec2 esize = (Vec2) {enemy->enemyW, enemy->enemyH};
+
+	if ((bpos.x + radius >= epos.x) && (epos.y <= bpos.y + radius && bpos.y - radius <= epos.y + esize.y)) {
+		ball->dir.x *= -1;
+		ball->vel.x *= -1;
+		return 1;
+	}
+
+	return 0;
+}
+
+static int topCollision(Vec2 bpos, f32 radius) {
+	// Player top collision
+
+	// Enemy top collision
+
+	return 0;
+}
+
 static void resolveCollision() {
 	Vec2 bpos = ball->pos;
 	f32 radius = ball->radius;
@@ -24,23 +56,8 @@ static void resolveCollision() {
 		ball->dir.y *= -1;
 	}
 
-	// Player collision
-	Vec2 ppos = player->pos;
-	Vec2 psize = (Vec2) {player->playerW, player->playerH};
-
-	if ((bpos.x - radius <= ppos.x + psize.x) && (ppos.y <= bpos.y + radius && bpos.y - radius <= ppos.y + psize.y)) {
-		ball->dir.x *= -1;
-		ball->vel.x *= -1;
-	}
-
-	// Enemy collision
-	Vec2 epos = enemy->pos;
-	Vec2 esize = (Vec2) {enemy->enemyW, enemy->enemyH};
-
-	if ((bpos.x + radius >= epos.x) && (epos.y <= bpos.y + radius && bpos.y - radius <= epos.y + esize.y)) {
-		ball->dir.x *= -1;
-		ball->vel.x *= -1;
-	}
+	if (!topCollision(bpos, radius)) 
+		frontCollision(bpos, radius);
 }
 
 void ballInit() {
@@ -54,7 +71,7 @@ void ballInit() {
 	ball->dir = (Vec2) {-1.0f, 1.0f};
 	ball->vel = (Vec2) {0.0f, 0.0f};
 
-	ball->color = 0xFFFFFFFF;
+	ball->color = WHITE;
 }
 
 void ballUpdate() {

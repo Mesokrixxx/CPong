@@ -26,7 +26,7 @@ void playerInit() {
 	player->pos = (Vec2) {3.0f, 1.0f};
 	player->vel = (Vec2) {0.0f, 0.0f};
 
-	player->color = 0xFFFFFFFF;
+	player->color = WHITE;
 }
 
 void playerUpdate() {

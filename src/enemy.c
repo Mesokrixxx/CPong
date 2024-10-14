@@ -29,7 +29,7 @@ void enemyInit() {
 	enemy->pos = (Vec2) {MapWidth - 3 - enemy->enemyW, 1.0f};
 	enemy->vel = (Vec2) {0.0f, 0.0f};
 
-	enemy->color = 0xFFFFFFFF;
+	enemy->color = WHITE;
 
 	enemy->strenght = 0;
 }
